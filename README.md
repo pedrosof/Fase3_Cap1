@@ -1,4 +1,5 @@
 FIAP - Faculdade de Informática e Administração Paulista
+![alt text](images/logo-fiap.png)
 
 Fase 3 Cap 1 – Construindo uma máquina agrícola
 
