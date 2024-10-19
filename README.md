@@ -8,23 +8,20 @@ Fase 3 Cap 1 – Construindo uma máquina agrícola
 Grupo 10
 
 👨‍🎓 Integrantes:
-•	Fabio Marcos Pedroso Filho
+•	[Fabio Marcos Pedroso Filho] (https://www.linkedin.com/in/pedrosof/)
 
 👩‍🏫 Professores:
 
 Tutor(a)
-•	Lucas Gomes Moreira
+•	[Lucas Gomes Moreira] (https://www.linkedin.com/in/lucas-gomes-moreira-15a8452a/)
 
 Coordenador(a)
-•	Andre Godoi, PhD
-
+•	[Andre Godoi, PhD] (https://www.linkedin.com/in/profandregodoi/)
 
 📜 Descrição
 O projeto tem como base a análise de sensores de umidade, temperatura e pH de solo e umidade e temperatura do clima para quantificar o volume de água necessário para irrigar 1 metro quadrado de plantação.
 
-
 Os dados climáticos são obtidos através da API pública OpenWeather.
-
 
 Os dados do Solo são obtidos através de Sensores criados no site Wokwi. 
 O Projeto do Sensor criado está disponível em: https://wokwi.com/projects/412014758291630081
