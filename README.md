@@ -22,7 +22,7 @@ Os dados climáticos são obtidos através da API pública OpenWeather.
 Os dados do Solo são obtidos através de Sensores criados no site Wokwi. 
 O Projeto do Sensor criado está disponível em: https://wokwi.com/projects/412014758291630081
 
-![alt text](wokwi/wokwi.jpg)
+![alt text](images/wokwi.jpg)
 
 📁 Estrutura de pastas
 Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
