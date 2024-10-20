@@ -70,7 +70,7 @@ Juntos, esses três códigos formam um sistema robusto e integrado, que facilita
 
 - **Projeto do Sensor**: O projeto do sensor criado está disponível em: [Wokwi Project](https://wokwi.com/projects/412014758291630081).
 
-![Wokwi Sensor](images/wokwi.jpg)
+![Wokwi Sensor](images/wokwi.png)
 
 ### Resumo do Circuito
 
