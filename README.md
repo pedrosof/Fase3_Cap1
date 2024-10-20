@@ -37,6 +37,7 @@ O Projeto do Sensor criado está disponível em: [Wokwi Project](https://wokwi.c
 - **config**: Arquivos de configuração.
 - **README.md**: Este arquivo de guia e explicações gerais sobre o projeto.
 - **wokwi**: Código fonte e JSON do diagrama do sensor de solo.
+- **images**: Imagens documentacionais.
 
 ---
 
