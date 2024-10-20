@@ -94,9 +94,9 @@ Este resumo destaca os componentes principais do circuito e suas conexões essen
 
 O script gerado no wokwi monitora **temperatura**, **umidade**, **luminosidade** e o estado de dois botões (P e K) em um sistema embarcado. Ele utiliza sensores como o **DHT22** para coletar dados de temperatura e umidade, e um **LDR** para medir a luminosidade. Além disso, três LEDs indicam o status dessas variáveis:
 
-- **LED de Temperatura**: Acende quando a temperatura ultrapassa o limite definido.
-- **LED de Umidade**: Acende quando a umidade está abaixo do valor mínimo.
-- **LED de Luminosidade/pH**: Acende quando a luminosidade está fora da faixa ideal.
+- **LED de Temperatura (vermelho)**: Acende quando a temperatura ultrapassa o limite definido.
+- **LED de Umidade (verde-limão)**: Acende quando a umidade está abaixo do valor mínimo.
+- **LED de pH (azul)**: Acende quando a luminosidade está fora da faixa ideal.
 
 Os botões **P** e **K** são monitorados e, quando pressionados, exibem o respectivo estado no console.
 
