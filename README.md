@@ -141,6 +141,11 @@ cx_Oracle.init_oracle_client(lib_dir="/Path/to/Oracle/instantclient")
 ## 🗃 Histórico de Lançamentos
 
 ```markdown
+- **0.6.0** – 20/10/2024: *Documentação*
+- **0.5.0** – 19/10/2024: *Criação do Simulador de Entradas*
+- **0.4.0** – 19/10/2024: *Criação do Dashboard*
+- **0.3.0** – 19/10/2024: *Criação do Install.py*
+- **0.2.0** – 18/10/2024: *Criação do Circuito e Script do Wokwi*
 - **0.1.0** – 17/10/2024: *Versão Inicial*
 ```
 
