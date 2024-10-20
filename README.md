@@ -68,6 +68,26 @@ Juntos, esses três códigos formam um sistema robusto e integrado, que facilita
 
 ![Wokwi Sensor](images/wokwi.jpg)
 
+# Resumo do Circuito Wokwi
+
+Este circuito simulado no Wokwi inclui os seguintes componentes principais:
+
+- **ESP32** programado em **MicroPython**.
+- **Sensores**:
+  - **DHT22** (`dht1`): Sensor de temperatura (20°C) e umidade (20.5%), conectado ao pino **2** do ESP32.
+  - **LDR** (`ldr1`): Sensor de luz com intensidade de **130 lux**, conectado ao pino analógico **34** do ESP32.
+- **LEDs**:
+  - **LED vermelho** (`led1`): Conectado ao resistor de **150Ω** (`r1`) e ao pino **0** do ESP32.
+  - **LED azul** (`led2`): Conectado ao resistor de **90Ω** (`r2`) e ao pino **4** do ESP32.
+  - **LED verde-limão** (`led3`): Conectado ao resistor de **140Ω** (`r3`) e ao pino **25** do ESP32.
+- **Botões**:
+  - **Botão azul** (`btn1`): Conectado ao pino **27** do ESP32.
+  - **Botão verde** (`btn2`): Conectado ao pino **26** do ESP32.
+
+Este resumo destaca os componentes principais do circuito e suas conexões essenciais com a placa ESP32.
+
+---
+
 ### Resumo do Script criaado no Wokwi
 
 O script gerado no wokwi monitora **temperatura**, **umidade**, **luminosidade** e o estado de dois botões (P e K) em um sistema embarcado. Ele utiliza sensores como o **DHT22** para coletar dados de temperatura e umidade, e um **LDR** para medir a luminosidade. Além disso, três LEDs indicam o status dessas variáveis:
