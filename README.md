@@ -65,9 +65,11 @@ Juntos, esses três códigos formam um sistema robusto e integrado, que facilita
 - **Dados do Solo**: Capturados por sensores desenvolvidos no site [Wokwi](https://wokwi.com/).
 - **Projeto do Sensor**: O projeto do sensor criado está disponível em: [Wokwi Project](https://wokwi.com/projects/412014758291630081).
 
-![Wokwi Sensor](images/wokwi.jpg)
+---
 
 # Resumo do que foi criado no Wokwi
+
+![Wokwi Sensor](images/wokwi.jpg)
 
 ### Resumo do Circuito
 
