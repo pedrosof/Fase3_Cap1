@@ -61,6 +61,7 @@ Além disso, o **terceiro código** automatiza a geração e inserção de dados
 
 Juntos, esses três códigos formam um sistema robusto e integrado, que facilita a **tomada de decisões sobre a irrigação**, oferecendo uma visão completa dos dados de solo e clima. O sistema também é útil para testes e simulações, ajudando a prever e otimizar o uso de água em diferentes cenários agrícolas.
 
+
 - **Dados Climáticos**: Obtidos através da API pública [OpenWeather](https://openweathermap.org/).
 - **Dados do Solo**: Capturados por sensores desenvolvidos no site [Wokwi](https://wokwi.com/).
 - **Projeto do Sensor**: O projeto do sensor criado está disponível em: [Wokwi Project](https://wokwi.com/projects/412014758291630081).
