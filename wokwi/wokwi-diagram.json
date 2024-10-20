@@ -1,6 +1,7 @@
 {
   "version": 1,
-  "editor": "Fabio Pedroso",
+  "author": "Fabio Pedroso",
+  "editor": "wokwi",
   "parts": [
     {
       "type": "board-esp32-devkit-c-v4",
