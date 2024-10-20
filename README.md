@@ -118,7 +118,9 @@ Este sistema é ideal para monitoramento de variáveis ambientais e controle vis
 Para executar o código, siga os passos abaixo:
 
 1. Tenha um banco de dados Oracle configurado e instalado.
-2. Utilize Python 3.12.
+2. Utilize [Python](https://www.python.org/downloads/)
+3. Utilize o [Oracle Instant Client](https://www.oracle.com/br/database/technologies/instant-client.html).
+4. Utilize o [Oracle JDBC Driver](https://www.oracle.com/database/technologies/appdev/jdbc-downloads.html)
 
 ### Scripts Principais:
 
@@ -127,14 +129,23 @@ Para executar o código, siga os passos abaixo:
 - **LigaBomba.R**: Calcula o volume de água necessário para irrigação.
 - **SimulaEntradas.py**: Gera dados para o dia atual e entradas aleatórias para datas anteriores.
 
-### Instalação:
+### Configuração:
 
-Os scripts requerem a instalação do [Oracle Instant Client](https://www.oracle.com/br/database/technologies/instant-client.html).
-
-Após a instalação, ajuste o caminho no script Python:
-
+1. Configure o arquivo config/config.cfg (OpenWeather apikey e Conexões Oracle)
+2. Configure os arquivos python
 ```python
 cx_Oracle.init_oracle_client(lib_dir="/Path/to/Oracle/instantclient")
+
+RSCRIPT_PATH = "/Path/to/Rscript"
+SCRIPT_R_PATH = "/Path/to/LigaBomba.R"
+GRAPH_PATH = "/Path/to/LigaBomba.png"
+```
+3. Configure os arquivos R
+```r
+GRAPH_PATH <- "/Path/to/LigaBomba.png"
+
+drv <- JDBC(driverClass = "oracle.jdbc.OracleDriver", 
+            classPath = "/Path/to/ojdbc8.jar")
 ```
 
 ---
