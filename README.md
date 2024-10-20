@@ -38,6 +38,24 @@ O código em **R** conecta-se ao banco de dados Oracle, carrega dados de sensore
 
 Após realizar os cálculos, o código gera um gráfico de linha que mostra o volume de água necessário ao longo do tempo, salvando-o como um arquivo **PNG** que pode ser exibido no dashboard do primeiro código.
 
+---
+
+### Script de Geração e Inserção de Dados no Banco de Dados Oracle
+Este script gera e insere dados aleatórios de sensores de solo e condições climáticas no banco de dados Oracle. Ele também se conecta à API OpenWeather para buscar condições climáticas reais.
+
+#### Principais Funcionalidades:
+- **Conexão ao Banco de Dados**: Realizada através de cx_Oracle, utilizando configurações carregadas de um arquivo `config.cfg`.
+- **Geração de Datas Aleatórias**: Datas são geradas dentro de um intervalo definido, evitando duplicidades no banco de dados.
+- **Inserção de Dados**:
+  - Na tabela `sensor_data`: Temperatura do solo, umidade, pH e estado dos botões.
+  - Na tabela `condicoes_climaticas`: Temperatura, umidade e clima.
+- **Chamada à API OpenWeather**: Busca condições climáticas reais para a cidade especificada no arquivo de configuração.
+- **Argumentos de Linha de Comando**: Permite personalizar o número de entradas e o intervalo de datas para os dados gerados.
+
+Esse script é útil para testes e simulações de sistemas que monitoram dados agrícolas e climáticos.
+
+---
+
 ### Resumo Conjunto
 Esses dois códigos trabalham juntos para construir um sistema completo de **monitoramento e análise de dados agrícolas**. O **Python** com **Dash** é utilizado para a visualização e interação com o usuário, enquanto o **R** faz os cálculos detalhados de irrigação. O sistema facilita a tomada de decisões sobre irrigação, visualizando tanto os dados de solo quanto as condições climáticas, além de gerar gráficos que mostram a quantidade de água necessária em diferentes cenários.
 
