@@ -116,7 +116,7 @@ def gerar_e_inserir_dados(cursor, conn, start_date, end_date, ne=1):
 
     insercoes_realizadas = 0  # Contador de inserções bem-sucedidas
     datas_geradas = set()  # Conjunto para armazenar datas já geradas
-    tentativas_max = 100  # Limite de tentativas para evitar loops infinitos
+    tentativas_max = ne  # Limitar o número de tentativas ao valor de `ne`
 
     print(f"Gerando {ne} entradas entre {start_date.date()} e {end_date.date()}")
 

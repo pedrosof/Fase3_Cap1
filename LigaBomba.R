@@ -63,8 +63,6 @@ analise_irrigacao <- function(merged_data) {
   return(merged_data)
 }
 
-# Função para calcular o volume de água com base na umidade
-# Função para calcular o volume de água com base na umidade do solo e do clima
 # Função para calcular o volume de água com base na umidade do solo, do clima e nas temperaturas
 calcular_volume_agua <- function(merged_data) {
   # Normalizar a umidade do solo e do clima para o cálculo do volume de água
@@ -74,16 +72,23 @@ calcular_volume_agua <- function(merged_data) {
   min_humidity_clima <- min(merged_data$UMIDADE, na.rm = TRUE)
   max_humidity_clima <- max(merged_data$UMIDADE, na.rm = TRUE)
 
-  # Criar um fator de ajuste com base na temperatura
-  fator_temp_solo <- 1 + (merged_data$TEMPERATURE - 20) / 100  # Quanto maior a temperatura do solo, maior o fator (aumenta em 1% para cada grau acima de 20°C)
-  fator_temp_clima <- 1 + (merged_data$TEMPERATURA - 20) / 100  # Quanto maior a temperatura do clima, maior o fator (aumenta em 1% para cada grau acima de 20°C)
+  # Fator de ajuste com base na temperatura
+  fator_temp_solo <- 1 + (merged_data$TEMPERATURE - 20) / 100  # Aumenta em 1% para cada grau acima de 20°C
+  fator_temp_clima <- 1 + (merged_data$TEMPERATURA - 20) / 100  # Aumenta em 1% para cada grau acima de 20°C
   
   # Fator clima para umidade alta reduzindo a necessidade de irrigação
   fator_clima <- ifelse(merged_data$UMIDADE > 60, 0.5, 1)  # Reduz a necessidade de irrigação em 50% se o clima estiver úmido
+
+  # Considerar a umidade do solo e do clima do dia anterior
+  umidade_solo_anterior <- lag(merged_data$HUMIDITY, 1, default = mean(merged_data$HUMIDITY, na.rm = TRUE))
+  umidade_clima_anterior <- lag(merged_data$UMIDADE, 1, default = mean(merged_data$UMIDADE, na.rm = TRUE))
   
-  # Cálculo do volume de água ajustado pela umidade e temperatura
+  # Ajuste no volume de água com base nas umidades do dia anterior
+  fator_umidade_anterior <- ifelse((umidade_solo_anterior > 60 | umidade_clima_anterior > 60), 0.7, 1)
+
+  # Cálculo do volume de água ajustado pela umidade do solo e clima do dia anterior, e pela temperatura
   merged_data <- merged_data %>%
-    mutate(volume_agua = fator_clima * fator_temp_solo * fator_temp_clima * 
+    mutate(volume_agua = fator_umidade_anterior * fator_clima * fator_temp_solo * fator_temp_clima * 
                          (15 - 10 * ((HUMIDITY - min_humidity_solo) / (max_humidity_solo - min_humidity_solo))))
   
   return(merged_data)
