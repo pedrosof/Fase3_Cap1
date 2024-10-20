@@ -68,7 +68,7 @@ Juntos, esses três códigos formam um sistema robusto e integrado, que facilita
 
 ![Wokwi Sensor](images/wokwi.jpg)
 
-### Resumo do Script
+### Resumo do Script criaado no Wokwi
 
 O script gerado no wokwi monitora **temperatura**, **umidade**, **luminosidade** e o estado de dois botões (P e K) em um sistema embarcado. Ele utiliza sensores como o **DHT22** para coletar dados de temperatura e umidade, e um **LDR** para medir a luminosidade. Além disso, três LEDs indicam o status dessas variáveis:
 
