@@ -61,14 +61,15 @@ Além disso, o **terceiro código** automatiza a geração e inserção de dados
 
 Juntos, esses três códigos formam um sistema robusto e integrado, que facilita a **tomada de decisões sobre a irrigação**, oferecendo uma visão completa dos dados de solo e clima. O sistema também é útil para testes e simulações, ajudando a prever e otimizar o uso de água em diferentes cenários agrícolas.
 
-
 - **Dados Climáticos**: Obtidos através da API pública [OpenWeather](https://openweathermap.org/).
 - **Dados do Solo**: Capturados por sensores desenvolvidos no site [Wokwi](https://wokwi.com/).
 - **Projeto do Sensor**: O projeto do sensor criado está disponível em: [Wokwi Project](https://wokwi.com/projects/412014758291630081).
 
 ![Wokwi Sensor](images/wokwi.jpg)
 
-# Resumo do Circuito Wokwi
+# Resumo do que foi criado no Wokwi
+
+### Resumo do Circuito
 
 Este circuito simulado no Wokwi inclui os seguintes componentes principais:
 
@@ -86,9 +87,7 @@ Este circuito simulado no Wokwi inclui os seguintes componentes principais:
 
 Este resumo destaca os componentes principais do circuito e suas conexões essenciais com a placa ESP32.
 
----
-
-### Resumo do Script criaado no Wokwi
+### Resumo do Script
 
 O script gerado no wokwi monitora **temperatura**, **umidade**, **luminosidade** e o estado de dois botões (P e K) em um sistema embarcado. Ele utiliza sensores como o **DHT22** para coletar dados de temperatura e umidade, e um **LDR** para medir a luminosidade. Além disso, três LEDs indicam o status dessas variáveis:
 
