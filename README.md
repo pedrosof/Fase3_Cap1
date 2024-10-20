@@ -3,7 +3,7 @@
 [![FIAP Logo](images/logo-fiap.png)](https://www.fiap.com.br)
 
 ## Fase 3 Cap 1 – Construindo uma máquina agrícola
-
+[GitHub](https://github.com/pedrosof/Fase3_Cap1)
 ### Grupo 10
 
 👨‍🎓 **Integrantes**:
