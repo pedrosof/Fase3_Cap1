@@ -104,6 +104,10 @@ Este sistema é ideal para monitoramento de variáveis ambientais e controle vis
 
 ---
 
+[Video do Funcionamento no Youtube](https://youtu.be/RNyyCE6V7ow)
+
+---
+
 ## 📁 Estrutura de Pastas
 
 - **config**: Arquivos de configuração.
