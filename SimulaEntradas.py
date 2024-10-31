@@ -99,6 +99,7 @@ def buscar_condicoes_climaticas():
             temperatura = data['main']['temp']
             umidade = data['main']['humidity']
             clima = data['weather'][0]['description']  # Descrição do clima (ex: "nuvens dispersas", "ensolarado")
+            clima = clima.title()
             print(f"Condições climáticas recebidas: Temperatura: {temperatura}, Umidade: {umidade}, Clima: {clima}")
             return temperatura, umidade, clima
         else:
@@ -109,61 +110,48 @@ def buscar_condicoes_climaticas():
         print(f"Erro ao buscar condições climáticas: {e}")
         return None, None, None
 
-# Função para gerar e inserir dados aleatórios entre um intervalo de datas
-def gerar_e_inserir_dados(cursor, conn, start_date, end_date, ne=1):
-    if ne is None:
-        ne = 1  # Definir o padrão para 1 se não for passado
+# Função para gerar e inserir dados para todas as datas no intervalo especificado
+def gerar_e_inserir_dados(cursor, conn, start_date, end_date):
+    current_date = start_date.date()
+    end_date = end_date.date()
 
-    insercoes_realizadas = 0  # Contador de inserções bem-sucedidas
-    datas_geradas = set()  # Conjunto para armazenar datas já geradas
-    tentativas_max = ne  # Limitar o número de tentativas ao valor de `ne`
+# Lista de descrições de condições climáticas em português
+    condicoes_climaticas_lista = [
+        'céu limpo', 'poucas nuvens', 'nuvens dispersas', 'nuvens quebradas', 'nublado', 
+        'chuva leve', 'chuva moderada', 'chuva intensa', 'chuva extrema', 
+        'névoa', 'neblina', 'tempestade com chuva leve', 'tempestade com chuva forte'
+    ]
+    
+    print(f"Iniciando a inserção de dados entre {start_date} e {end_date}")
 
-    print(f"Gerando {ne} entradas entre {start_date.date()} e {end_date.date()}")
+    while current_date <= end_date:
+        # Verificar se já existem dados para a data atual
+        if not verificar_data_existente(cursor, current_date):
+            print(f"Gerando dados para a data: {current_date}")
 
-    while insercoes_realizadas < ne and tentativas_max > 0:
-        current_date = random_date(start_date, end_date).date()  # Gerar apenas a parte da data
+            # Gerar dados para a tabela sensor_data
+            temp_sensor = random.uniform(20, 40)
+            hum_sensor = random.uniform(30, 70)
+            ph_value = random.uniform(4, 8)
+            button_p_state = random.choice([0, 1])
+            button_k_state = random.choice([0, 1])
 
-        # Verificar se a data já foi gerada nesta execução
-        if current_date in datas_geradas:
-            print(f"Data {current_date} já foi gerada anteriormente. Gerando nova data.")
-            tentativas_max -= 1  # Diminuir o número de tentativas restantes
-            continue
+            # Inserir os dados na tabela sensor_data
+            inserido = insert_data_sensor_data(cursor, conn, current_date, temp_sensor, hum_sensor, ph_value, button_p_state, button_k_state)
+            if inserido:
+                # Gerar e inserir dados de condições climáticas aleatórias
+                temp_climatic = random.uniform(10, 40)
+                hum_climatic = random.uniform(20, 80)
+                clima = random.choice(condicoes_climaticas_lista)
+                insert_data_condicoes_climaticas(cursor, conn, current_date, temp_climatic, hum_climatic, clima)
 
-        # Verificar se a data já existe no banco (em ambas as tabelas)
-        if verificar_data_existente(cursor, current_date):
-            print(f"Data {current_date} já existe no banco. Gerando nova data.")
-            tentativas_max -= 1  # Diminuir o número de tentativas restantes
-            continue
+        else:
+            print(f"Dados já existem para a data: {current_date}")
 
-        print(f"Gerando dados para a data: {current_date}")
+        # Avançar para o próximo dia
+        current_date += timedelta(days=1)
 
-        # Gerar dados para a tabela sensor_data
-        temp_sensor = random.uniform(20, 40)
-        hum_sensor = random.uniform(30, 70)
-        ph_value = random.uniform(4, 8)
-        button_p_state = random.choice([0, 1])
-        button_k_state = random.choice([0, 1])
-
-        # Inserir os dados na tabela sensor_data
-        inserido = insert_data_sensor_data(cursor, conn, current_date, temp_sensor, hum_sensor, ph_value, button_p_state, button_k_state)
-        if inserido:
-            insercoes_realizadas += 1  # Incrementar apenas se a inserção for bem-sucedida
-            datas_geradas.add(current_date)  # Adicionar a data ao conjunto de datas já geradas
-
-            # Gerar condições climáticas aleatórias
-            temp_climatic = random.uniform(10, 40)
-            hum_climatic = random.uniform(20, 80)
-            clima = random.choice(['Nublado', 'Chuvoso', 'Ensolarado', 'Nuvens Esparsas'])
-
-            # Inserir dados de condições climáticas aleatórias
-            insert_data_condicoes_climaticas(cursor, conn, current_date, temp_climatic, hum_climatic, clima)
-
-        print(f"Inserções realizadas: {insercoes_realizadas}/{ne}")
-
-        tentativas_max -= 1  # Diminuir o número de tentativas restantes
-
-    if tentativas_max == 0:
-        print("Limite de tentativas excedido. Não foi possível gerar mais inserções.")
+    print("Processo de inserção concluído.")
 
 # Função principal
 if __name__ == "__main__":
@@ -179,7 +167,7 @@ if __name__ == "__main__":
     cursor = conn.cursor()
 
     # Gerar e inserir dados no banco de dados
-    gerar_e_inserir_dados(cursor, conn, args.start_date, args.end_date, args.ne)
+    gerar_e_inserir_dados(cursor, conn, args.start_date, args.end_date)
 
     # Fechar a conexão
     cursor.close()

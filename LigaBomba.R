@@ -69,24 +69,26 @@ calcular_volume_agua <- function(merged_data) {
   min_humidity_solo <- min(merged_data$HUMIDITY, na.rm = TRUE)
   max_humidity_solo <- max(merged_data$HUMIDITY, na.rm = TRUE)
   
-  min_humidity_clima <- min(merged_data$UMIDADE, na.rm = TRUE)
-  max_humidity_clima <- max(merged_data$UMIDADE, na.rm = TRUE)
-
+  # Fatores de ajuste baseados no clima (quanto mais úmido o clima, menor a necessidade de irrigação)
+  fator_clima <- case_when(
+    merged_data$CLIMA %in% c('chuva leve', 'chuva moderada', 'chuva intensa', 'chuva extrema') ~ 0.3,
+    merged_data$CLIMA %in% c('névoa', 'neblina', 'fumaça') ~ 0.7,
+    merged_data$CLIMA %in% c('nublado', 'nuvens quebradas') ~ 0.9,
+    TRUE ~ 1  # Climas menos úmidos, como "céu limpo", não reduzem a necessidade de irrigação
+  )
+  
   # Fator de ajuste com base na temperatura
   fator_temp_solo <- 1 + (merged_data$TEMPERATURE - 20) / 100  # Aumenta em 1% para cada grau acima de 20°C
   fator_temp_clima <- 1 + (merged_data$TEMPERATURA - 20) / 100  # Aumenta em 1% para cada grau acima de 20°C
   
-  # Fator clima para umidade alta reduzindo a necessidade de irrigação
-  fator_clima <- ifelse(merged_data$UMIDADE > 60, 0.5, 1)  # Reduz a necessidade de irrigação em 50% se o clima estiver úmido
-
   # Considerar a umidade do solo e do clima do dia anterior
   umidade_solo_anterior <- lag(merged_data$HUMIDITY, 1, default = mean(merged_data$HUMIDITY, na.rm = TRUE))
   umidade_clima_anterior <- lag(merged_data$UMIDADE, 1, default = mean(merged_data$UMIDADE, na.rm = TRUE))
   
   # Ajuste no volume de água com base nas umidades do dia anterior
   fator_umidade_anterior <- ifelse((umidade_solo_anterior > 60 | umidade_clima_anterior > 60), 0.7, 1)
-
-  # Cálculo do volume de água ajustado pela umidade do solo e clima do dia anterior, e pela temperatura
+  
+  # Cálculo do volume de água ajustado pelo fator climático e pelas condições do dia anterior
   merged_data <- merged_data %>%
     mutate(volume_agua = fator_umidade_anterior * fator_clima * fator_temp_solo * fator_temp_clima * 
                          (15 - 10 * ((HUMIDITY - min_humidity_solo) / (max_humidity_solo - min_humidity_solo))))
