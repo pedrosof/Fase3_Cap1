@@ -157,6 +157,8 @@ drv <- JDBC(driverClass = "oracle.jdbc.OracleDriver",
 ## 🗃 Histórico de Lançamentos
 
 ```markdown
+- **0.9.0** – 20/10/2024: *Volume de Água de Irrigação armazenado em banco de dados*
+- **0.8.0** – 20/10/2024: *Ajuste de Climas e Novos Gráficos no Dashboard*
 - **0.7.0** – 20/10/2024: *Documentação*
 - **0.6.0** – 20/10/2024: *Criação do Simulador de Entradas*
 - **0.5.0** – 20/10/2024: *Crição do script R para volumetria de irrigação*
